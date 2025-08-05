@@ -5476,7 +5476,7 @@
       </prop>
       <prop oor:name="ShowDonation" oor:type="xs:boolean" oor:nillable="false">
         <info>
-          <desc>Determines whether to show a donation button in the start center or extension.</desc>
+          <desc>Determines whether to show a donation button in the start center or extension. (DISABLED)</desc>
         </info>
         <value>true</value>
       </prop>

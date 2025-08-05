@@ -20,23 +20,7 @@
     <menu:menu menu:id=".uno:PickList">
         <menu:menupopup>
             <menu:menuitem menu:id=".uno:AddDirect"/>
-            <menu:menuitem menu:id=".uno:Open"/>
-            <menu:menuitem menu:id=".uno:OpenRemote" menu:style="text"/>
-            <menu:menuitem menu:id=".uno:RecentFileList"/>
-            <menu:menuseparator/>
-            <menu:menuitem menu:id=".uno:AutoPilotMenu" menu:style="text"/>
-            <menu:menu menu:id=".uno:TemplateMenu">
-                <menu:menupopup>
-                    <menu:menuitem menu:id=".uno:OpenTemplate" menu:style="text"/>
-                    <menu:menuitem menu:id=".uno:NewDoc" menu:style="text"/>
-                </menu:menupopup>
-            </menu:menu>
-            <menu:menuseparator/>
-            <menu:menu menu:id=".uno:SignaturesMenu">
-                <menu:menupopup>
-                    <menu:menuitem menu:id=".uno:SignPDF" menu:style="text"/>
-                </menu:menupopup>
-            </menu:menu>
+            <menu:menuitem menu:id=".uno:OpenFromCalc"/>
             <menu:menuseparator/>
             <menu:menuitem menu:id=".uno:Quit"/>
         </menu:menupopup>
@@ -59,22 +43,5 @@
             <menu:menuitem menu:id=".uno:OptionsTreeDialog"/>
         </menu:menupopup>
     </menu:menu>
-    <menu:menu menu:id=".uno:HelpMenu">
-        <menu:menupopup>
-            <menu:menuitem menu:id=".uno:HelpIndex"/>
-            <menu:menuitem menu:id=".uno:ExtendedHelp"/>
-            <menu:menuitem menu:id=".uno:Documentation"/>
-            <menu:menuseparator/>
-            <menu:menuitem menu:id=".uno:QuestionAnswers"/>
-            <menu:menuitem menu:id=".uno:SendFeedback"/>
-            <menu:menuseparator/>
-            <menu:menuitem menu:id=".uno:SafeMode"/>
-            <menu:menuseparator/>
-            <menu:menuitem menu:id=".uno:GetInvolved"/>
-            <menu:menuitem menu:id=".uno:Donation"/>
-            <menu:menuseparator/>
-            <menu:menuitem menu:id=".uno:ShowLicense"/>
-            <menu:menuitem menu:id=".uno:About"/>
-        </menu:menupopup>
-    </menu:menu>
+
 </menu:menubar>

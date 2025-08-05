@@ -1744,24 +1744,25 @@ void SfxViewFrame::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
                         batch->commit();
                     }
 
-                    // inform about donations
-                    const sal_Int64 nLastDonateShown = officecfg::Setup::Product::LastTimeDonateShown::get();
-                    bool bUpdateLastTimeDonateShown = false;
+                    // inform about donations - DISABLED
+                    // const sal_Int64 nLastDonateShown = officecfg::Setup::Product::LastTimeDonateShown::get();
+                    // bool bUpdateLastTimeDonateShown = false;
 
-                    if (nLastDonateShown == 0)
-                        bUpdateLastTimeDonateShown = true;
-                    else if (!bIsInfobarShown && nPeriodSec < nNow && nLastDonateShown < nNow - nPeriodSec) // 90d alternating with getinvolved
-                    {
-                        bUpdateLastTimeDonateShown = true;
+                    // if (nLastDonateShown == 0)
+                    //     bUpdateLastTimeDonateShown = true;
+                    // else if (!bIsInfobarShown && nPeriodSec < nNow && nLastDonateShown < nNow - nPeriodSec) // 90d alternating with getinvolved
+                    // {
+                    //     bUpdateLastTimeDonateShown = true;
 
-                        VclPtr<SfxInfoBarWindow> pInfoBar = AppendInfoBar(u"donate"_ustr, u""_ustr, SfxResId(STR_DONATE_TEXT), InfobarType::INFO);
-                        if (pInfoBar)
-                        {
-                            weld::Button& rDonateButton = pInfoBar->addButton();
-                            rDonateButton.set_label(SfxResId(STR_DONATE_BUTTON));
-                            rDonateButton.connect_clicked(LINK(this, SfxViewFrame, DonationHandler));
-                        }
-                    }
+                    //     VclPtr<SfxInfoBarWindow> pInfoBar = AppendInfoBar(u"donate"_ustr, u""_ustr, SfxResId(STR_DONATE_TEXT), InfobarType::INFO);
+                    //     if (pInfoBar)
+                    //     {
+                    //         weld::Button& rDonateButton = pInfoBar->addButton();
+                    //         rDonateButton.set_label(SfxResId(STR_DONATE_BUTTON));
+                    //         rDonateButton.connect_clicked(LINK(this, SfxViewFrame, DonationHandler));
+                    //     }
+                    // }
+                    bool bUpdateLastTimeDonateShown = false; // Keep variable for next section
 
                     if (bUpdateLastTimeDonateShown
                         && !officecfg::Setup::Product::LastTimeDonateShown::isReadOnly())
@@ -1871,10 +1872,10 @@ IMPL_LINK_NOARG(SfxViewFrame, GetInvolvedHandler, weld::Button&, void)
     GetDispatcher()->Execute(SID_GETINVOLVED);
 }
 
-IMPL_LINK_NOARG(SfxViewFrame, DonationHandler, weld::Button&, void)
-{
-    GetDispatcher()->Execute(SID_DONATION);
-}
+// IMPL_LINK_NOARG(SfxViewFrame, DonationHandler, weld::Button&, void) // DISABLED
+// {
+//     GetDispatcher()->Execute(SID_DONATION);
+// }
 #endif
 
 IMPL_LINK(SfxViewFrame, SwitchReadOnlyHandler, weld::Button&, rButton, void)

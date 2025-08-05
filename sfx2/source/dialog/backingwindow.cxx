@@ -196,15 +196,15 @@ BackingWindow::BackingWindow(vcl::Window* i_pParent)
     if (officecfg::Office::Common::Misc::ShowDonation::get())
     {
         mxExtensionsButton->hide();
-        mxDonateButton->show();
-        mxDonateButton->set_from_icon_name(BMP_DONATE);
-        OUString sDonate(SfxResId(STR_DONATE_BUTTON));
-        if (sDonate.getLength() > 8)
+        // mxDonateButton->show(); // Commented out to hide donate button
+        // mxDonateButton->set_from_icon_name(BMP_DONATE);
+        // OUString sDonate(SfxResId(STR_DONATE_BUTTON));
+        // if (sDonate.getLength() > 8)
         {
-            mxDonateButton->set_tooltip_text(sDonate);
-            sDonate = OUString::Concat(sDonate.subView(0, 7)) + "...";
+            // mxDonateButton->set_tooltip_text(sDonate);
+            // sDonate = OUString::Concat(sDonate.subView(0, 7)) + "...";
         }
-        mxDonateButton->set_label(sDonate);
+        // mxDonateButton->set_label(sDonate);
     }
 
     mxDropTarget = mxAllRecentThumbnails->GetDropTarget();
@@ -287,27 +287,8 @@ void BackingWindow::initControls()
     mbInitControls = true;
 
     // collect the URLs of the entries in the File/New menu
-    SvtModuleOptions    aModuleOptions;
-
-    if (aModuleOptions.IsWriterInstalled())
-        mxAllRecentThumbnails->mnFileTypes |= sfx2::ApplicationType::TYPE_WRITER;
-
-    if (aModuleOptions.IsCalcInstalled())
-        mxAllRecentThumbnails->mnFileTypes |= sfx2::ApplicationType::TYPE_CALC;
-
-    if (aModuleOptions.IsImpressInstalled())
-        mxAllRecentThumbnails->mnFileTypes |= sfx2::ApplicationType::TYPE_IMPRESS;
-
-    if (aModuleOptions.IsDrawInstalled())
-        mxAllRecentThumbnails->mnFileTypes |= sfx2::ApplicationType::TYPE_DRAW;
-
-    if (aModuleOptions.IsDataBaseInstalled())
-        mxAllRecentThumbnails->mnFileTypes |= sfx2::ApplicationType::TYPE_DATABASE;
-
-    if (aModuleOptions.IsMathInstalled())
-        mxAllRecentThumbnails->mnFileTypes |= sfx2::ApplicationType::TYPE_MATH;
-
-    mxAllRecentThumbnails->mnFileTypes |= sfx2::ApplicationType::TYPE_OTHER;
+    // Only allow Calc/Spreadsheet files
+    mxAllRecentThumbnails->mnFileTypes = sfx2::ApplicationType::TYPE_CALC;
     mxAllRecentThumbnails->Reload();
     mxAllRecentThumbnails->ShowTooltips( true );
 

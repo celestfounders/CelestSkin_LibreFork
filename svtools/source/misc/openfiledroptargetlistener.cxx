@@ -26,6 +26,7 @@
 #include <com/sun/star/beans/PropertyValue.hpp>
 #include <com/sun/star/util/URLTransformer.hpp>
 #include <com/sun/star/util/XURLTransformer.hpp>
+#include <com/sun/star/uri/UriReferenceFactory.hpp>
 
 #include <utility>
 #include <vcl/transfer.hxx>
@@ -185,6 +186,25 @@ void OpenFileDropTargetListener::implts_OpenFile( const OUString& rFilePath )
     if( ::osl::FileBase::E_None == ::osl::DirectoryItem::get( aFileURL, aItem ) &&
         ::osl::FileBase::E_None == aItem.getFileStatus( aStatus ) )
             aFileURL = aStatus.getFileURL();
+
+    // Check if file is a spreadsheet format
+    css::uno::Reference< css::uri::XUriReferenceFactory > xUriRefFactory =
+        css::uri::UriReferenceFactory::create( m_xContext );
+    css::uno::Reference< css::uri::XUriReference > xUriRef = xUriRefFactory->parse( aFileURL );
+    if ( xUriRef.is() )
+    {
+        OUString aPath = xUriRef->getPath();
+        sal_Int32 nLastDot = aPath.lastIndexOf( '.' );
+        if ( nLastDot != -1 )
+        {
+            OUString aExt = aPath.copy( nLastDot + 1 ).toAsciiLowerCase();
+            // Only allow spreadsheet file extensions
+            if ( aExt != "ods" && aExt != "fods" && aExt != "xls" && aExt != "xlsx" )
+                return; // Reject non-spreadsheet files
+        }
+        else
+            return; // Reject files without extension
+    }
 
     // open file
     /* SAFE { */

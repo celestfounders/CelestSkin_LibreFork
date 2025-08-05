@@ -193,6 +193,7 @@ $(eval $(call gb_Configuration_add_localized_datas,registry,officecfg/registry/d
 		org/openoffice/Office/UI/ReportCommands.xcu \
 	) \
 	org/openoffice/Office/UI/Sidebar.xcu \
+	org/openoffice/Office/UI/StartModuleCommands.xcu \
 	org/openoffice/Office/UI/StartModuleWindowState.xcu \
 	org/openoffice/Office/UI/WriterWindowState.xcu \
 	org/openoffice/Office/UI/XFormsWindowState.xcu \

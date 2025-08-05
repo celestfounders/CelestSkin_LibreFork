@@ -652,10 +652,35 @@ void SfxApplication::OpenDocExec_Impl( SfxRequest& rReq )
 
         std::optional<bool> bShowFilterDialog;
         weld::Window* pTopWindow = GetTopWindow();
-        ErrCode nErr = sfx2::FileOpenDialog_Impl(pTopWindow,
-                nDialogType,
-                eDialogFlags, aURLList,
-                aFilter, pSet, &aPath, nDialog, aDenyList, bShowFilterDialog);
+        ErrCode nErr;
+
+        // If specific document service is requested (e.g., spreadsheets only), set appropriate filter
+        if (!aDocService.isEmpty() && aDocService == "com.sun.star.sheet.SpreadsheetDocument")
+        {
+            // For spreadsheet documents, use a specialized dialog with calc-specific filters
+            sfx2::FileDialogHelper aDlgHelper(nDialogType, eDialogFlags, pTopWindow);
+            if (!aPath.isEmpty())
+                aDlgHelper.SetDisplayDirectory(aPath);
+
+            // Add only spreadsheet filters
+            aDlgHelper.AddFilter(u"OpenDocument Spreadsheet"_ustr, u"*.ods"_ustr);
+            aDlgHelper.AddFilter(u"OpenDocument Spreadsheet (Flat XML)"_ustr, u"*.fods"_ustr);
+            aDlgHelper.AddFilter(u"Microsoft Excel 2007-365"_ustr, u"*.xlsx"_ustr);
+            aDlgHelper.AddFilter(u"Microsoft Excel 97-2003"_ustr, u"*.xls"_ustr);
+            aDlgHelper.AddFilter(u"Text CSV"_ustr, u"*.csv"_ustr);
+
+            // Set default filter to ODS
+            aDlgHelper.SetCurrentFilter(u"OpenDocument Spreadsheet"_ustr);
+
+            nErr = aDlgHelper.Execute(aURLList, pSet, aFilter, aPath);
+        }
+        else
+        {
+            nErr = sfx2::FileOpenDialog_Impl(pTopWindow,
+                    nDialogType,
+                    eDialogFlags, aURLList,
+                    aFilter, pSet, &aPath, nDialog, aDenyList, bShowFilterDialog);
+        }
 
         if ( nErr == ERRCODE_ABORT )
         {

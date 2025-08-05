@@ -31,6 +31,7 @@
 #include <bitmaps.hlst>
 #include "recentdocsviewitem.hxx"
 #include <sfx2/app.hxx>
+#include <vcl/ImageTree.hxx>
 
 #include <officecfg/Office/Common.hxx>
 
@@ -61,8 +62,8 @@ RecentDocsView::RecentDocsView(std::unique_ptr<weld::ScrolledWindow> xWindow, st
     : ThumbnailView(std::move(xWindow), std::move(xMenu))
     , mnFileTypes(ApplicationType::TYPE_NONE)
     , mnLastMouseDownItem(THUMBNAILVIEW_ITEM_NOTFOUND)
-    , maWelcomeLine1(SfxResId(STR_WELCOME_LINE1))
-    , maWelcomeLine2(SfxResId(STR_WELCOME_LINE2))
+    , maWelcomeLine1(u"Celest"_ustr)
+    , maWelcomeLine2(u"Drop a document here to open it"_ustr)
     , mpLoadRecentFile(nullptr)
     , m_nExecuteHdlId(nullptr)
 {
@@ -255,8 +256,29 @@ void RecentDocsView::Paint(vcl::RenderContext& rRenderContext, const tools::Rect
 
     if (maWelcomeImage.IsEmpty())
     {
-        const tools::Long aWidth(aRect.GetWidth() > aRect.getOpenHeight() ? aRect.GetHeight()/2 : aRect.GetWidth()/2);
-        maWelcomeImage = SfxApplication::GetApplicationLogo(aWidth);
+        // Try to load the custom folder icon first
+        BitmapEx aImage;
+        if (ImageTree::get().loadImage(u"res/folderopen.png"_ustr, u"colibre"_ustr, aImage, false))
+        {
+            // Scale the image to appropriate size (24px)
+            const tools::Long aDesiredSize = 24;
+            Size aImageSize = aImage.GetSizePixel();
+            if (aImageSize.Width() > aDesiredSize || aImageSize.Height() > aDesiredSize)
+            {
+                double fScale = std::min(static_cast<double>(aDesiredSize) / aImageSize.Width(),
+                                       static_cast<double>(aDesiredSize) / aImageSize.Height());
+                aImageSize.setWidth(static_cast<tools::Long>(aImageSize.Width() * fScale));
+                aImageSize.setHeight(static_cast<tools::Long>(aImageSize.Height() * fScale));
+                aImage.Scale(aImageSize);
+            }
+            maWelcomeImage = aImage;
+        }
+        else
+        {
+            // Fallback to original LibreOffice logo but smaller
+            const tools::Long aWidth = 64; // Much smaller than original
+            maWelcomeImage = SfxApplication::GetApplicationLogo(aWidth);
+        }
     }
 
     // No recent files to be shown yet. Show a welcome screen.

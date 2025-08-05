@@ -3,10 +3,11 @@
 <interface domain="sfx">
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkImage" id="calc_all_image">
-    <property name="visible">True</property>
+    <property name="visible">False</property>
     <property name="can-focus">False</property>
     <property name="icon-name">res/ods_32_8.png</property>
   </object>
+
   <object class="GtkMenu" id="clearmenu">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -56,12 +57,12 @@
     <property name="icon-name">res/odf_32_8.png</property>
   </object>
   <object class="GtkImage" id="open_all_image">
-    <property name="visible">True</property>
+    <property name="visible">False</property>
     <property name="can-focus">False</property>
     <property name="icon-name">framework/res/folder_32.png</property>
   </object>
   <object class="GtkImage" id="open_all_image1">
-    <property name="visible">True</property>
+    <property name="visible">False</property>
     <property name="can-focus">False</property>
     <property name="icon-name">framework/res/recent-documents.png</property>
   </object>
@@ -115,19 +116,50 @@
                     <property name="orientation">vertical</property>
                     <property name="spacing">3</property>
                     <child>
-                      <object class="GtkButton" id="open_all">
-                        <property name="label" translatable="yes" context="startcenter|open_all">_Open File</property>
+                      <object class="GtkBox" id="celest_header_box">
                         <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">12</property>
+                        <property name="halign">center</property>
                         <property name="margin-start">6</property>
                         <property name="margin-end">6</property>
-                        <property name="margin-top">6</property>
-                        <property name="image">open_all_image</property>
-                        <property name="relief">none</property>
-                        <property name="use-underline">True</property>
-                        <property name="xalign">0</property>
-                        <property name="always-show-image">True</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <child>
+                          <object class="GtkImage" id="celest_logo_display">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">res/celestlogo_48x48.png</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="celest_title">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label">Celest</property>
+                            <property name="halign">start</property>
+                            <property name="valign">center</property>
+                            <attributes>
+                              <attribute name="size" value="20000"/>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -136,9 +168,30 @@
                       </packing>
                     </child>
                     <child>
+                      <object class="GtkButton" id="open_all">
+                        <property name="label" translatable="yes" context="startcenter|open_all">_Open File</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="margin-start">6</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-top">6</property>
+                        <property name="padding">8</property>
+                        <property name="relief">none</property>
+                        <property name="use-underline">True</property>
+                        <property name="xalign">0</property>
+                        <property name="always-show-image">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkButton" id="open_remote">
                         <property name="label" translatable="yes" context="startcenter|open_remote">Remote File_s</property>
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="margin-start">6</property>
@@ -157,7 +210,7 @@
                     </child>
                     <child>
                       <object class="GtkSeparator" id="separator3">
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">False</property>
                         <property name="margin-start">6</property>
                         <property name="margin-end">6</property>
@@ -165,7 +218,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">10</property>
                       </packing>
                     </child>
                     <child>
@@ -176,7 +229,7 @@
                         <property name="receives-default">True</property>
                         <property name="margin-start">6</property>
                         <property name="margin-end">6</property>
-                        <property name="image">open_all_image1</property>
+                        <property name="padding">8</property>
                         <property name="relief">none</property>
                         <property name="use-underline">True</property>
                         <property name="xalign">0</property>
@@ -185,13 +238,13 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">3</property>
+                        <property name="position">10</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkToggleButton" id="templates_all">
                         <property name="label" translatable="yes" context="startcenter|templates_all">T_emplates</property>
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="margin-start">6</property>
@@ -205,12 +258,12 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">4</property>
+                        <property name="position">10</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSeparator" id="separator1">
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">False</property>
                         <property name="margin-start">6</property>
                         <property name="margin-end">6</property>
@@ -218,12 +271,12 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">5</property>
+                        <property name="position">10</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="create_label">
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">False</property>
                         <property name="margin-start">12</property>
                         <property name="margin-bottom">6</property>
@@ -233,13 +286,13 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">6</property>
+                        <property name="position">10</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkButton" id="writer_all">
                         <property name="label" translatable="yes" context="startcenter|writer_all">_Writer Document</property>
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="margin-start">6</property>
@@ -253,7 +306,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">7</property>
+                        <property name="position">10</property>
                       </packing>
                     </child>
                     <child>
@@ -264,7 +317,7 @@
                         <property name="receives-default">True</property>
                         <property name="margin-start">6</property>
                         <property name="margin-end">6</property>
-                        <property name="image">calc_all_image</property>
+                        <property name="padding">8</property>
                         <property name="relief">none</property>
                         <property name="use-underline">True</property>
                         <property name="xalign">0</property>
@@ -273,13 +326,13 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">8</property>
+                        <property name="position">10</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkButton" id="impress_all">
                         <property name="label" translatable="yes" context="startcenter|impress_all">_Impress Presentation</property>
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="margin-start">6</property>
@@ -293,13 +346,13 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">9</property>
+                        <property name="position">10</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkButton" id="draw_all">
                         <property name="label" translatable="yes" context="startcenter|draw_all">_Draw Drawing</property>
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="margin-start">6</property>
@@ -319,7 +372,7 @@
                     <child>
                       <object class="GtkButton" id="math_all">
                         <property name="label" translatable="yes" context="startcenter|math_all">_Math Formula</property>
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="margin-start">6</property>
@@ -339,7 +392,7 @@
                     <child>
                       <object class="GtkButton" id="database_all">
                         <property name="label" translatable="yes" context="startcenter|database_all">_Base Database</property>
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="margin-start">6</property>
@@ -353,12 +406,13 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">12</property>
+                        <property name="position">13</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="althelplabel">
                         <property name="can-focus">False</property>
+                        <property name="visible">False</property>
                         <property name="no-show-all">True</property>
                         <property name="label" translatable="yes" context="startcenter|althelplabel">He_lp</property>
                         <property name="use-underline">True</property>
@@ -366,7 +420,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">15</property>
+                        <property name="position">16</property>
                       </packing>
                     </child>
                   </object>
@@ -378,7 +432,7 @@
                 </child>
                 <child>
                   <object class="GtkDrawingArea" id="daBrand">
-                    <property name="visible">True</property>
+                    <property name="visible">False</property>
                     <property name="can-focus">False</property>
                     <property name="valign">center</property>
                     <property name="margin-start">12</property>
@@ -394,7 +448,7 @@
                 <child>
                   <object class="GtkSeparator" id="separator2">
                     <property name="height-request">2</property>
-                    <property name="visible">True</property>
+                    <property name="visible">False</property>
                     <property name="can-focus">False</property>
                   </object>
                   <packing>
@@ -416,7 +470,7 @@
                     <child>
                       <object class="GtkButton" id="help">
                         <property name="label" translatable="yes" context="stock">_Help</property>
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="relief">none</property>
@@ -431,7 +485,7 @@
                     <child>
                       <object class="GtkButton" id="extensions">
                         <property name="label" translatable="yes" context="startcenter|extensions">E_xtensions</property>
-                        <property name="visible">True</property>
+                        <property name="visible">False</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="relief">none</property>
@@ -448,6 +502,7 @@
                       <object class="GtkButton" id="donate">
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
+                        <property name="visible">False</property>
                         <property name="no-show-all">True</property>
                         <property name="relief">none</property>
                         <property name="use-underline">True</property>
@@ -457,18 +512,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="spacing">2</property>
-                            <child>
-                              <object class="GtkImage" id="donate_image">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="icon-name">res/donate.png</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
+
                             <child>
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
@@ -488,7 +532,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">10</property>
                       </packing>
                     </child>
                   </object>
@@ -549,7 +593,7 @@
             <child>
               <!-- n-columns=3 n-rows=1 -->
               <object class="GtkGrid" id="actions">
-                <property name="visible">True</property>
+                <property name="visible">False</property>
                 <property name="can-focus">False</property>
                 <property name="margin-start">6</property>
                 <property name="margin-end">6</property>
