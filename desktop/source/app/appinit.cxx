@@ -27,6 +27,7 @@
 #include "cmdlineargs.hxx"
 #include <strings.hrc>
 #include <com/sun/star/lang/XInitialization.hpp>
+#include <com/sun/star/task/XJob.hpp>
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #include <com/sun/star/uno/Exception.hpp>
 #include <com/sun/star/ucb/UniversalContentBroker.hpp>
@@ -113,6 +114,31 @@ void Desktop::RegisterServices()
     }
 
     configureUcb();
+
+            // Initialize private backend service
+        try
+        {
+            const Reference< XComponentContext >& xContext = ::comphelper::getProcessComponentContext();
+            // Try Python UNO service first (preferred)
+            Reference<css::task::XJob> xPrivateBackendJob(
+                xContext->getServiceManager()->createInstanceWithContext(
+                    u"com.sun.star.private.backend.PrivateBackendService"_ustr, xContext),
+                UNO_QUERY );
+            if ( xPrivateBackendJob.is() )
+            {
+                Sequence< css::beans::NamedValue > aArgs;
+                xPrivateBackendJob->execute( aArgs );
+                SAL_INFO("desktop.app", "Private backend Python service initialized successfully");
+            }
+            else
+            {
+                SAL_WARN("desktop.app", "Private backend service could not be created");
+            }
+        }
+        catch (const css::uno::Exception& e)
+        {
+            SAL_WARN("desktop.app", "Failed to initialize private backend service: " << e.Message);
+        }
 
     CreateTemporaryDirectory();
     m_bServicesRegistered = true;

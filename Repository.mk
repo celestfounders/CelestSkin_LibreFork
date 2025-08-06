@@ -456,6 +456,7 @@ $(eval $(call gb_Helper_register_libraries_for_install,OOOLIBS,ooo, \
 	$(call gb_Helper_optional,OPENCL,opencl) \
 	passwordcontainer \
 	pcr \
+	private_backend \
 	pdffilter \
 	$(call gb_Helper_optional,SCRIPTING,protocolhandler) \
 	sax \
@@ -930,6 +931,7 @@ endif
 $(eval $(call gb_Helper_register_packages_for_install,ooo,\
 	$(if $(SYSTEM_LIBEXTTEXTCAT),,libexttextcat_fingerprint) \
 	officecfg_misc \
+	private_backend_services \
 	$(if $(filter $(OS),MACOSX), \
 		extensions_mdibundle \
 		extensions_OOoSpotlightImporter \

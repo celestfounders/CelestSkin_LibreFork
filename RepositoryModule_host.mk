@@ -86,6 +86,7 @@ $(eval $(call gb_Module_add_moduledirs,libreoffice,\
 	$(call gb_Helper_optional,DBCONNECTIVITY,forms) \
 	formula \
 	$(call gb_Helper_optional,DESKTOP,fpicker) \
+	private_backend \
 	framework \
     $(call gb_Helper_optionals_or,HELPTOOLS XMLHELP,helpcompiler) \
 	$(call gb_Helper_optional,HELP,helpcontent2) \

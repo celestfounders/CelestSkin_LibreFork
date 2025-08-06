@@ -17,6 +17,9 @@ $(eval $(call gb_Module_add_targets,postprocess,\
 	CustomTarget_registry \
 	Rdb_services \
 ))
+
+# Ensure private_backend is built before services.rdb
+$(call gb_Rdb_get_target,services) : $(call gb_Module_get_target,private_backend)
 ifeq ($(gb_Side),host)
 $(eval $(call gb_Module_add_targets,postprocess,\
 	CustomTarget_images \
