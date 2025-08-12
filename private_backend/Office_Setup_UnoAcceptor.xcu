@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE oor:component-data SYSTEM "registry.dtd">
+<oor:component-data oor:name="Setup" oor:package="org.openoffice" xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <node oor:name="Office" oor:op="fuse">
+    <prop oor:name="ooSetupConnectionURL" oor:op="fuse">
+      <value>socket,host=127.0.0.1,port=2083;urp;StarOffice.ComponentContext</value>
+    </prop>
+  </node>
+</oor:component-data>
+

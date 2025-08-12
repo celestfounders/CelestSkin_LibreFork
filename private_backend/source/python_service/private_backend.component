@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component loader="com.sun.star.loader.Python" uri="vnd.openoffice.pymodule:private_backend"
+    xmlns="http://openoffice.org/2010/uno-components">
+    <implementation name="com.sun.star.private.backend.PrivateBackendService">
+        <service name="com.sun.star.private.backend.PrivateBackendService"/>
+        <service name="com.sun.star.task.Job"/>
+    </implementation>
+</component>

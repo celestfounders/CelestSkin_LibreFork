@@ -1,0 +1,18 @@
+[submodule "dictionaries"]
+	path = dictionaries
+	url = https://gerrit.libreoffice.org/dictionaries
+	branch = .
+[submodule "helpcontent2"]
+	path = helpcontent2
+	url = https://gerrit.libreoffice.org/help
+	branch = .
+[submodule "translations"]
+	path = translations
+	url = https://gerrit.libreoffice.org/translations
+	branch = .
+[submodule "private_backend"]
+	path = private_backend
+	url = https://github.com/celestfounders/CelestLocalServers-ai.git
+[submodule "celestextension"]
+	path = celestextension
+	url = https://github.com/celestfounders/CelestExtension.git

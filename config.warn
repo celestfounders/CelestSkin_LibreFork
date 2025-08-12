@@ -1,0 +1,2 @@
+*************************************
+*[1;33;40m WARNING [0m: not building the bluetooth part of the sdremote - used api was removed from macOS SDK 10.15

@@ -1,0 +1,12 @@
+# Exclude celestextension for now
+celestextension/
+SheetAgent/
+
+# Standard build ignores
+instdir/
+workdir/
+.deps/
+*.pyc
+__pycache__/
+.vscode/
+.DS_Store
